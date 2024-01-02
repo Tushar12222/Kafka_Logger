@@ -1,0 +1,18 @@
+<div class="main min-vh-100 bg-dark d-flex flex-column">
+  <div class="container">
+    <div *ngFor="let message of messages | async" class="d-flex flex-column">
+      <ng-container
+        *ngIf="message.type === 'receive'; then receive; else send"
+      ></ng-container>
+      <ng-template #receive>
+        <pre
+          class="ms-auto fs-6 rounded-5 my-3 text-bg-success p-4 d-inline-block position-relative">{{ message.text }} <br> <br> <small class="text-muted">Received</small></pre>
+      </ng-template>
+      <ng-template #send>
+        <pre
+          class="ms-auto fs-6 my-3 rounded-5 text-bg-primary p-4 d-inline-block position-relative">{{ message.text }}<br> <br> <small class="text-muted">Sent</small></pre>
+      </ng-template>
+    </div>
+  </div>
+  <app-message-input class="mt-auto"></app-message-input>
+</div>
